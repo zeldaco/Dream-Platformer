@@ -396,10 +396,7 @@ MonoBehaviour:
   damage: {fileID: 8300000, guid: 4b65b8adf1a5d436785169345c0264fd, type: 3}
   heartGain: {fileID: 8300000, guid: c46702aad9acc4897835692930d83f56, type: 3}
   gravityFlip: {fileID: 0}
-<<<<<<< HEAD
   respawn: {fileID: 8300000, guid: b308e7c3c46a4481193a230a3668bee3, type: 3}
-=======
->>>>>>> b10e226a68620c30b8e2cd6cc5d74f4ceb6d136a
   soundCooldown: 0.1
 --- !u!1 &44452909
 GameObject:
