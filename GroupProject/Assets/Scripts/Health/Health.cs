@@ -7,14 +7,20 @@ public class Health : MonoBehaviour
     public float currentHealth { get; private set; }
     private Animator anim;
     private bool dead;
-    private float yThreshold = -30f;  // Initialize default threshold value
+    private float yThreshold = -40f;  // Initialize default threshold value
     private GravityController gravityController;
 
-    private void Awake() 
+    private void Awake()
     {
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
-        gravityController = GetComponent<GravityController>();  // Assuming the GravityController is attached to the same GameObject
+        gravityController = GetComponent<GravityController>();
+
+        // Check for null components and log errors if not found
+        if (anim == null)
+            Debug.LogError("Animator component not found on " + gameObject.name);
+        if (gravityController == null)
+            Debug.LogError("GravityController component not found on " + gameObject.name);
     }
 
     private void Update()
@@ -22,10 +28,10 @@ public class Health : MonoBehaviour
         CheckFalling();  // Continuously check if the player has fallen
     }
 
-    public void TakeDamage(float _damage) 
+    public void TakeDamage(float _damage)
     {
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
-        if (currentHealth > 0) 
+        if (currentHealth > 0)
         {
             anim.SetTrigger("hurt");  // Trigger hurt animation
         }
@@ -38,7 +44,7 @@ public class Health : MonoBehaviour
     private void CheckFalling()
     {
         // Update yThreshold based on gravity direction
-        yThreshold = gravityController.IsGravityUp ? 30f : -30f; // Ensure yThreshold is set correctly
+        yThreshold = gravityController.IsGravityUp ? 40f : -40f;
 
         if ((gravityController.IsGravityUp && transform.position.y > yThreshold) ||
             (!gravityController.IsGravityUp && transform.position.y < yThreshold))
@@ -67,9 +73,8 @@ public class Health : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene
     }
 
-        public void AddHealth(float _value) //for adding health when grabbing a heart
+    public void AddHealth(float _value) // For adding health when grabbing a heart
     {
         currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
     }
-
 }
