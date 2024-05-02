@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalInput;
 
     private GravityController gravityController; // Reference to the GravityController
+    private AudioManager audioManager; // Reference to the AudioManager
 
     private void Awake()
     {
@@ -19,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
         gravityController = GetComponent<GravityController>(); // Get the GravityController component
+        audioManager = FindObjectOfType<AudioManager>(); // Get the AudioManager component
     }
 
     private void Update()
@@ -56,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
         {
             body.velocity = new Vector2(body.velocity.x, jumpPower * (gravityController.IsGravityUp ? -1 : 1));
             anim.SetTrigger("jump");
+            audioManager.PlaySFX(audioManager.jump); // Play jump sound effect
         }
     }
 
