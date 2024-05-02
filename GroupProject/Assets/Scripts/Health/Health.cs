@@ -7,7 +7,7 @@ public class Health : MonoBehaviour
     public float currentHealth { get; private set; }
     private Animator anim;
     private bool dead;
-    private float yThreshold = -30f;  // Initialize default threshold value
+    private float yThreshold = -40f;  // Initialize default threshold value
     private GravityController gravityController;
 
     private void Awake() 
@@ -38,7 +38,7 @@ public class Health : MonoBehaviour
     private void CheckFalling()
     {
         // Update yThreshold based on gravity direction
-        yThreshold = gravityController.IsGravityUp ? 30f : -30f; // Ensure yThreshold is set correctly
+        yThreshold = gravityController.IsGravityUp ? 40f : -40f; // Ensure yThreshold is set correctly
 
         if ((gravityController.IsGravityUp && transform.position.y > yThreshold) ||
             (!gravityController.IsGravityUp && transform.position.y < yThreshold))

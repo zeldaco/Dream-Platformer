@@ -9,7 +9,7 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 3;
     private int currentHealth;
     public List<Image> hearts; // Reference to heart asset in UI
-    private float defaultYThreshold = -10f; // Default threshold for falling into the void
+    private float defaultYThreshold = -15f; // Default threshold for falling into the void
     private float yThreshold; // Active threshold based on gravity
     private GravityController gravityController;
 

@@ -6,7 +6,7 @@ public class MovingPlatform : MonoBehaviour
 {
     public Vector2 pointA;
     public Vector2 pointB;
-    public float speed = 2.0f;
+    public float speed = 0.5f;
     private float progress = 0.0f;
 
     private void Update()
