@@ -10,11 +10,14 @@ public class Health : MonoBehaviour
     private float yThreshold = -40f;  // Initialize default threshold value
     private GravityController gravityController;
 
+    private AudioManager audioManager; // Reference to the AudioManager
+
     private void Awake()
     {
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
         gravityController = GetComponent<GravityController>();
+        audioManager = FindObjectOfType<AudioManager>(); // Get the AudioManager component
 
         // Check for null components and log errors if not found
         if (anim == null)
@@ -39,6 +42,7 @@ public class Health : MonoBehaviour
         {
             Die();
         }
+        audioManager.PlaySFX(audioManager.damage); // Play damage sound effect
     }
 
     private void CheckFalling()
@@ -62,6 +66,7 @@ public class Health : MonoBehaviour
         GetComponent<PlayerMovement>().enabled = false; // Disable player movement script
         dead = true;
         Invoke("GameOver", 2f);  // Delay the game over to show death animations
+        audioManager.PlaySFX(audioManager.death); // Play death sound effect
     }
 
     private void GameOver()
@@ -71,10 +76,12 @@ public class Health : MonoBehaviour
             gravityController.ResetGravity();  // Reset gravity before reloading the scene
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene
+        audioManager.PlaySFX(audioManager.respawn); // Play respawn sound effect
     }
 
     public void AddHealth(float _value) // For adding health when grabbing a heart
     {
         currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
+        audioManager.PlaySFX(audioManager.heartGain); // Play health sound effect
     }
 }

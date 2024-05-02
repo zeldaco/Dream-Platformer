@@ -5,15 +5,15 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] private AudioSource musicSource;  // To play background music
-    [SerializeField] private AudioSource SFXSource;    // To play sound effects
-
     public AudioClip background;  // Background music clip
+    [SerializeField] private AudioSource SFXSource;    // To play sound effects
     public AudioClip death;       // Death sound effect
     public AudioClip jump;        // Jump sound effect
     public AudioClip damage;      // Damage sound effect
     public AudioClip heartGain;        // Bonk or hit sound effect
-
     public AudioClip gravityFlip;  // Change Gravity sound effect
+
+    public AudioClip respawn;  // Change Gravity sound effect
 
     private AudioClip lastPlayedClip;
     private float lastPlayedTime;
