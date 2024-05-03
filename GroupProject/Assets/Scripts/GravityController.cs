@@ -9,7 +9,12 @@ public class GravityController : MonoBehaviour
 
     private float gravityFlipCooldown = 1.0f; // Time in seconds between gravity flips
     private float lastGravityFlipTime = -2.0f; // Initialize to ensure gravity can flip at start
+    private AudioManager audioManager; // Reference to the AudioManager
 
+    private void Awake()
+    {
+        audioManager = FindObjectOfType<AudioManager>(); // Get the AudioManager component
+    }
     private void Start()
     {
         characterTransform = this.transform;
@@ -43,6 +48,7 @@ public class GravityController : MonoBehaviour
             Physics2D.gravity = new Vector2(0, -9.81f);
             targetRotation = Quaternion.Euler(0, 0, 0);
         }
+        audioManager.PlaySFX(audioManager.gravityFlip); // Play jump sound effect
     }
 
     public void ResetGravity()
