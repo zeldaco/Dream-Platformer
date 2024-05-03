@@ -2728,8 +2728,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7808f4f08adfb403a811cbd5cbd598ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   parallaxFactor: 0.2
 --- !u!1 &224575970
 GameObject:
@@ -7450,7 +7450,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 419427976}
-  - {fileID: 209374036}
   - {fileID: 1331245786}
   - {fileID: 1198948068}
   m_Father: {fileID: 0}
