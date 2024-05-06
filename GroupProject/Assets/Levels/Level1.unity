@@ -2728,8 +2728,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7808f4f08adfb403a811cbd5cbd598ea, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   parallaxFactor: 0.2
 --- !u!1 &224575970
 GameObject:
@@ -7452,6 +7452,7 @@ Transform:
   - {fileID: 419427976}
   - {fileID: 1331245786}
   - {fileID: 1198948068}
+  - {fileID: 209374036}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &503537132
@@ -15056,7 +15057,7 @@ Transform:
   m_GameObject: {fileID: 969240317}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 19.85, y: 11.99, z: 0}
+  m_LocalPosition: {x: 19.76, y: 11.99, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18147,7 +18148,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 21.81522, y: 11.001181}
+  m_Offset: {x: 21.81522, y: 9.954584}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -18158,7 +18159,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9.686134, y: 11.809673}
+  m_Size: {x: 9.686134, y: 9.71648}
   m_EdgeRadius: 0
 --- !u!1 &1230864850
 GameObject:
