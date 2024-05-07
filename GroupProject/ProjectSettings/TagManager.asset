@@ -8,6 +8,7 @@ TagManager:
   - Monster
   - Heart
   - Audio
+  - Dog
   layers:
   - Default
   - TransparentFX
