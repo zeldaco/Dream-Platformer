@@ -3,40 +3,42 @@ using UnityEngine;
 
 public class GravityController : MonoBehaviour
 {
-    public bool IsGravityUp { get; private set; } = false;  // Directly use this property for gravity direction
+    public bool IsGravityUp { get; private set; } = false;
     private Quaternion targetRotation;
     private Transform characterTransform;
 
-    private float gravityFlipCooldown = 1.0f; // Time in seconds between gravity flips
-    private float lastGravityFlipTime = -2.0f; // Initialize to ensure gravity can flip at start
-    private AudioManager audioManager; // Reference to the AudioManager
+    private float gravityFlipCooldown = 1.0f;
+    private float lastGravityFlipTime = -2.0f;
+    private AudioManager audioManager;
+    private PlayerMovement playerMovement;  // Added to access PlayerMovement
 
     private void Awake()
     {
-        audioManager = FindObjectOfType<AudioManager>(); // Get the AudioManager component
+        audioManager = FindObjectOfType<AudioManager>();
+        playerMovement = GetComponent<PlayerMovement>();  // Get the PlayerMovement component
     }
+    
     private void Start()
     {
         characterTransform = this.transform;
         targetRotation = characterTransform.rotation;
-        ResetGravity();  // Ensure gravity is set to default at start
+        ResetGravity();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && Time.time - lastGravityFlipTime >= gravityFlipCooldown)
+        if (Input.GetKeyDown(KeyCode.F) && Time.time - lastGravityFlipTime >= gravityFlipCooldown && playerMovement.IsGrounded()) // Check if grounded before flipping
         {
-            lastGravityFlipTime = Time.time; // Update the last flip time
+            lastGravityFlipTime = Time.time;
             FlipGravity();
         }
 
-        // Gradually rotate the character to the target rotation
         characterTransform.rotation = Quaternion.Slerp(characterTransform.rotation, targetRotation, Time.deltaTime * 5);
     }
 
     private void FlipGravity()
     {
-        IsGravityUp = !IsGravityUp; // Toggle the state of gravity
+        IsGravityUp = !IsGravityUp;
 
         if (IsGravityUp)
         {
@@ -48,13 +50,13 @@ public class GravityController : MonoBehaviour
             Physics2D.gravity = new Vector2(0, -9.81f);
             targetRotation = Quaternion.Euler(0, 0, 0);
         }
-        audioManager.PlaySFX(audioManager.gravityFlip); // Play jump sound effect
+        audioManager.PlaySFX(audioManager.gravityFlip);
     }
 
     public void ResetGravity()
     {
-        IsGravityUp = false;  // Ensure the property is updated
+        IsGravityUp = false;
         Physics2D.gravity = new Vector2(0, -9.81f);
-        targetRotation = Quaternion.Euler(0, 0, 0);  // Reset rotation if needed
+        targetRotation = Quaternion.Euler(0, 0, 0);
     }
 }
