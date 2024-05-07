@@ -6,31 +6,43 @@ public class Enemy_Sideways : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float damage;
     private bool movingLeft;
+    private Vector2 startingPosition;
     private float leftEdge;
     private float rightEdge;
 
     private void Awake()
     {
-        leftEdge = transform.position.x - movementDistance;
-        rightEdge = transform.position.x + movementDistance;
+        startingPosition = transform.localPosition;
+        SetMovementBounds();
     }
 
     private void Update()
     {
+        Move();
+    }
+
+    private void SetMovementBounds()
+    {
+        leftEdge = startingPosition.x - movementDistance;
+        rightEdge = startingPosition.x + movementDistance;
+    }
+
+    private void Move()
+    {
         if (movingLeft)
         {
-            if (transform.position.x > leftEdge)
+            if (transform.localPosition.x > leftEdge)
             {
-                transform.position = new Vector3(transform.position.x - speed * Time.deltaTime, transform.position.y, transform.position.z);
+                transform.localPosition += Vector3.left * speed * Time.deltaTime;
             }
             else
                 movingLeft = false;
         }
         else
         {
-            if (transform.position.x < rightEdge)
+            if (transform.localPosition.x < rightEdge)
             {
-                transform.position = new Vector3(transform.position.x + speed * Time.deltaTime, transform.position.y, transform.position.z);
+                transform.localPosition += Vector3.right * speed * Time.deltaTime;
             }
             else
                 movingLeft = true;
@@ -39,9 +51,28 @@ public class Enemy_Sideways : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
             collision.GetComponent<Health>().TakeDamage(damage);
+        }
+    }
+
+private void OnCollisionEnter2D(Collision2D collision)
+{
+    if (collision.gameObject.CompareTag("MovingPlatform"))
+    {
+        transform.SetParent(collision.transform, true);
+        transform.localPosition = new Vector3(transform.localPosition.x, 0, transform.localPosition.z);  // Adjust Y position if necessary
+    }
+}
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("MovingPlatform"))
+        {
+            transform.SetParent(null);
+            startingPosition = transform.position;
+            SetMovementBounds();
         }
     }
 }

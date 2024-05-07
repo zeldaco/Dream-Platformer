@@ -8,6 +8,9 @@ TagManager:
   - Monster
   - Heart
   - Audio
+  - Dog
+  - MovingPlatform
+  - Moving Platform
   layers:
   - Default
   - TransparentFX

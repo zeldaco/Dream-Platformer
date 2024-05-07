@@ -48,7 +48,7 @@ public class Health : MonoBehaviour
     private void CheckFalling()
     {
         // Update yThreshold based on gravity direction
-        yThreshold = gravityController.IsGravityUp ? 40f : -40f;
+        yThreshold = gravityController.IsGravityUp ? 60f : -50f;
 
         if ((gravityController.IsGravityUp && transform.position.y > yThreshold) ||
             (!gravityController.IsGravityUp && transform.position.y < yThreshold))

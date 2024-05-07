@@ -12,22 +12,24 @@ public class MovingPlatform : MonoBehaviour
     private void Update()
     {
         // Calculate next position
-        progress += Time.deltaTime * speed; 
+        progress += Time.deltaTime * speed;
         float pingPong = Mathf.PingPong(progress, 1);
         transform.position = Vector2.Lerp(pointA, pointB, pingPong);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+private void OnCollisionEnter2D(Collision2D collision)
+{
+    if (collision.gameObject.CompareTag("Monster"))
     {
         collision.transform.SetParent(transform);
     }
+}
 
-    private void OnCollisionExit2D(Collision2D collision)
+private void OnCollisionExit2D(Collision2D collision)
+{
+    if (collision.gameObject.CompareTag("Monster"))
     {
-        if (gameObject.activeSelf) // Check if MovingPlatform is active
-        {
-            // Set the parent of collision object to null
-            collision.transform.SetParent(null);
-        }
+        collision.transform.SetParent(null);
     }
+}
 }
