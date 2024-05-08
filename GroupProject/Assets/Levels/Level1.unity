@@ -3923,7 +3923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ad853da70d5c4c3194b6d6f1bf9af45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementDistance: 5
+  movementDistance: 11
   speed: 4
   damage: 1
 --- !u!1 &154323498
@@ -14652,7 +14652,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 29.697887
+  orthographic size: 31.275723
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -29182,7 +29182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointA: {x: 230, y: -1.8}
-  pointB: {x: 275, y: -1.8}
+  pointB: {x: 300, y: -1.8}
   speed: 0.5
 --- !u!61 &1081530757
 BoxCollider2D:
