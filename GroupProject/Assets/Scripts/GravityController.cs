@@ -12,6 +12,9 @@ public class GravityController : MonoBehaviour
     private AudioManager audioManager;
     private PlayerMovement playerMovement;  // Added to access PlayerMovement
 
+    private float groundedBufferTime = 0.5f;  // Time in seconds for the grounded buffer
+    private float lastGroundedTime;  // Time when last grounded
+
     private void Awake()
     {
         audioManager = FindObjectOfType<AudioManager>();
@@ -27,7 +30,13 @@ public class GravityController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && Time.time - lastGravityFlipTime >= gravityFlipCooldown && playerMovement.IsGrounded()) // Check if grounded before flipping
+        if (playerMovement.IsGrounded())
+        {
+            lastGroundedTime = Time.time;  // Update last grounded time
+        }
+
+        // Check if still within grounded buffer time
+        if (Input.GetKeyDown(KeyCode.F) && Time.time - lastGravityFlipTime >= gravityFlipCooldown && (Time.time - lastGroundedTime <= groundedBufferTime))
         {
             lastGravityFlipTime = Time.time;
             FlipGravity();
@@ -60,3 +69,4 @@ public class GravityController : MonoBehaviour
         targetRotation = Quaternion.Euler(0, 0, 0);
     }
 }
+
